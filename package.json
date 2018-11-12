@@ -16,5 +16,17 @@
   "bugs": {
     "url": "https://github.com/ortizlu/dinner-decider-backend/issues"
   },
-  "homepage": "https://github.com/ortizlu/dinner-decider-backend#readme"
+  "homepage": "https://github.com/ortizlu/dinner-decider-backend#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.4",
+    "jwt-decode": "^2.2.0",
+    "jwt-simple": "^0.5.5",
+    "mongoose": "^5.3.5",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0"
+  }
 }
