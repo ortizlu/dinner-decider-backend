@@ -29,7 +29,7 @@ router.post('/signup', (req, res) => {
       food3: req.body.food3,
       food4: req.body.food4,
       food5: req.body.food5,
-      food6: req.body.food6,
+      food6: req.body.food6
     }
     User.findOne({ username: req.body.username }).then(user => {
       if (!user) {
@@ -50,14 +50,17 @@ router.post('/signup', (req, res) => {
               token: token
             })
           } else {
+            console.log('error')
             res.sendStatus(401)
           }
         })
       } else {
+        console.log('why!')
         res.sendStatus(401)
       }
     })
   } else {
+    console.log('please')
     res.sendStatus(401)
   }
 })
