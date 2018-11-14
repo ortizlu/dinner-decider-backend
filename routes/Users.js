@@ -6,17 +6,6 @@ const config = require('../config/config')
 const User = require('../models/userModel.js')
 const bcrypt = require('bcrypt-nodejs')
 const jwtDecode = require('jwt-decode')
-const axios = require('axios')
-
-router.get('/yelp', (req,res) => {
-    axios.get(`https://api.yelp.com/v3/businesses/search?term=chicken&latitude=38.855067&longitude=-77.10720859999999`, {
-      headers: {
-        "Authorization": "Bearer UF9X78Hx3MO2nRpV1PwxRqI4SycN4GeruXlSfJAaPU_cFq-TEnQ1JbvV752RTn7eOP1HUYs6tm7Gm1thgJ1fGJz7TXkAgNdEQcM_xHsoYmTFGuMMt2sQhaDt1ODmW3Yx"
-      }
-    }).then(response => {
-      res.json(response.data)
-    })
-})
 
 //FINDING ALL USERS
 router.get('/', (req, res) => {

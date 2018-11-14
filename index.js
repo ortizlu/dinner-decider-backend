@@ -1,9 +1,10 @@
 const express = require('express')
 const parser = require('body-parser')
 const app = express()
-// require('dotenv').config()
+require('dotenv').config()
 const cors = require('cors')
 const UsersRoutes = require('./routes/Users')
+const APIRoutes = require('./routes/Apis')
 const passport = require('./config/passport')()
 
 app.set('port', process.env.PORT || 3001)
@@ -20,6 +21,7 @@ app.use(function(req, res, next) {
 })
 
 app.use('/users', UsersRoutes)
+app.use('/api', APIRoutes)
 
 app.listen(app.get('port'), () => {
   console.log('Server listening on port ' + app.get('port'))
