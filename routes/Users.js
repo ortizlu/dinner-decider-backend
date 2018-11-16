@@ -151,17 +151,12 @@ router.put('/:id', (req, res) => {
 //GETTING ONE USER AND DELETING IT
 router.delete('/:id', (req, res) => {
   if (jwtDecode(req.headers.authorization).id === req.params.id) {
-    savedLocations
-      .find({ author: req.params.id })
-      .remove()
-      .then(_ => {
-        User.findOneAndDelete({ _id: req.params.id })
-          .then(deletedUser => {
-            res.json(deletedUser)
-          })
-          .catch(err => {
-            console.log(err)
-          })
+    User.findOneAndDelete({ _id: req.params.id })
+      .then(deletedUser => {
+        res.json(deletedUser)
+      })
+      .catch(err => {
+        console.log(err)
       })
   } else {
     res.sendStatus(401)
