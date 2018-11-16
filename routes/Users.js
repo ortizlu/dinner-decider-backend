@@ -112,24 +112,33 @@ router.get('/:id', (req, res) => {
   }
 })
 
+
 //GETTING ONE USER AND UPDATING IT
 router.put('/:id', (req, res) => {
   if (jwtDecode(req.headers.authorization).id === req.params.id) {
     User.findOneAndUpdate(
       { _id: req.params.id },
-      {
-        username: req.body.username,
-        password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8)),
-        food1: user.food1,
-        food2: user.food2,
-        food3: user.food3,
-        food4: user.food4,
-        food5: user.food5,
-        food6: user.food6,
-      }
+      { "$set": 
+              { "food1": req.body.food1, "food2": req.body.food2, "food3": req.body.food3, "food4": req.body.food4, "food5": req.body.food5, "food6": req.body.food6}
+            }, {new: true}
     )
       .then(updatedUser => {
-        res.json(updatedUser)
+        console.log(updatedUser)
+        let oldToken = jwtDecode(req.headers.authorization)
+          const payload = {
+            id: oldToken.id,
+            username: oldToken.username,
+            food1: updatedUser.food1,
+            food2: updatedUser.food2,
+            food3: updatedUser.food3,
+            food4: updatedUser.food4,
+            food5: updatedUser.food5,
+            food6: updatedUser.food6,
+          }
+          var token = jwt.encode(payload, config.jwtSecret)
+          res.json({
+            token: token
+          })
       })
       .catch(err => {
         console.log(err)
