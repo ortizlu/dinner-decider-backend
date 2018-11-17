@@ -7,10 +7,11 @@ const UsersRoutes = require('./routes/Users')
 const APIRoutes = require('./routes/Apis')
 const passport = require('./config/passport')()
 
+app.use(cors())
+cors({credentials: true, origin: true})
 
 app.set('port', process.env.PORT || 3001)
 app.use(parser.json())
-app.use(cors())
 
 //PASSPORT STUFF
 require('./config/passport')(passport)
